@@ -19,7 +19,6 @@ class prestamosRepository(private var prestamosDao: prestamosDAO) {
         prestamosDao.eliminarPrestamo(prestamoId)
     }
 
-
     suspend fun actualizarPrestamo(prestamoId: Int, libroId: Int, miembroId: Int, fechaPrestamo: Long, fechaDevolucion: Long){
         prestamosDao.actualizarPrestamo(prestamoId, libroId, miembroId, fechaPrestamo, fechaDevolucion)
     }

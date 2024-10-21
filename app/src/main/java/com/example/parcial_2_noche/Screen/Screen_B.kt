@@ -46,7 +46,7 @@ fun screen_b(navController: NavController, viewModel: mainViewModel){
     var titulo by remember { mutableStateOf("") }
     var genero by remember { mutableStateOf("") }
     var autorId by remember { mutableStateOf("") }
-    var libroActualizar by remember { mutableStateOf<libroConAutor?>(null) } //Puede ser nulo o autor
+    var libroActualizar by remember { mutableStateOf<libroConAutor?>(null) }
     var mostrarVentana by remember { mutableStateOf(false) }
 
     var expanded by remember { mutableStateOf(false) }
@@ -134,13 +134,6 @@ fun screen_b(navController: NavController, viewModel: mainViewModel){
                     }
                 }
             }
-/*
-            TextField(
-                value = autorId,
-                onValueChange = {autorId = it},
-                label = { Text("Autor") },
-                modifier = Modifier.fillMaxWidth()
-            )*/
 
             Spacer(modifier = Modifier.height(8.dp))
 
@@ -213,8 +206,8 @@ fun screen_b(navController: NavController, viewModel: mainViewModel){
 
                         Button(
                             onClick = {
-                                libroActualizar = libro // guardar la info
-                                mostrarVentana = true // el estado de la ventana,
+                                libroActualizar = libro
+                                mostrarVentana = true
                             }
 
                         ) {
@@ -260,12 +253,6 @@ fun screen_b(navController: NavController, viewModel: mainViewModel){
                                 onValueChange = { generoAct = it },
                                 label = { Text("Genero") }
                             )
-/*
-                            TextField(
-                                value = autorIdAct,
-                                onValueChange = { autorIdAct = it },
-                                label = { Text("Autor") }
-                            )*/
 
                             ExposedDropdownMenuBox(
                                 expanded = expanded2,
@@ -313,14 +300,14 @@ fun screen_b(navController: NavController, viewModel: mainViewModel){
                                 if(tituloAct.isBlank() || generoAct.isBlank()){
                                     Toast.makeText(context, "Completar todos los campos", Toast.LENGTH_SHORT).show()
                                 }else{
-                                    if(selectorId2.isEmpty()){ //para evitar que quede pegado
+                                    if(selectorId2.isEmpty()){
 
                                         selectorId2 = viewModel.listaAutores.find { it.nombre == autorIdAct }?.autor_id.toString()
 
                                     }
 
                                     viewModel.actualizarLibro(libroId.toInt(), tituloAct, generoAct, selectorId2.toInt())
-                                    selectorId2 = "" //Para que no se quede con el ultimo.
+                                    selectorId2 = ""
                                     mostrarVentana = false
                                 }
 
@@ -384,14 +371,6 @@ fun screen_b(navController: NavController, viewModel: mainViewModel){
                     text = "Miembros"
                 )
             }
-
-
-
-
-
         }
     }
-
-
-
 }

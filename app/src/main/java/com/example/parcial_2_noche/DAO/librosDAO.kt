@@ -20,10 +20,6 @@ interface librosDAO {
     """)
     suspend fun listarLibros(): List<libroConAutor>
 
-    /*
-    @Query("SELECT * FROM libros")
-    suspend fun listarLibros(): List<libros>*/
-
     @Query("DELETE FROM libros WHERE libro_id = :libroId")
     suspend fun eliminarLibro(libroId:Int)
 

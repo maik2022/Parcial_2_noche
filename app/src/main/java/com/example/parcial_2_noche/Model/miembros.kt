@@ -9,5 +9,5 @@ data class miembros(
     val miembro_id: Int = 0,
     val nombre: String,
     val apellido: String,
-    val fecha_inscripcion: Long  //Provisional para la fecha.
+    val fecha_inscripcion: Long
 )

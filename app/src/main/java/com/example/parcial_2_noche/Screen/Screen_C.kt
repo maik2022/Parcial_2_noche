@@ -44,16 +44,15 @@ fun screen_c(navController: NavController, viewModel: mainViewModel){
     var nombre by remember { mutableStateOf("") }
     var apellido by remember { mutableStateOf("") }
     var fecha_inscripcion by remember { mutableStateOf("") }
-    var miembroActualizar by remember { mutableStateOf<miembros?>(null) } //Puede ser nulo o autor
+    var miembroActualizar by remember { mutableStateOf<miembros?>(null) }
     var mostrarVentana by remember { mutableStateOf(false) }
-    //Manejo de la fecha
 
     val context = LocalContext.current
     val calendar = Calendar.getInstance()
     val year = calendar.get(Calendar.YEAR)
     val mes = calendar.get(Calendar.MONTH)
     val dia = calendar.get(Calendar.DAY_OF_MONTH)
-    //Estado para manejar la fecha seleccionada
+
     val seleccionFecha = remember { mutableStateOf<Long?>(null)}
     val seleccionFechaAct = remember { mutableStateOf<Long?>(null)}
 
@@ -98,12 +97,11 @@ fun screen_c(navController: NavController, viewModel: mainViewModel){
 
             Spacer(modifier = Modifier.height(8.dp))
 
-            //Mostrar el selector de fecha
+
 
             Button(
                 onClick = {
                     DatePickerDialog(context, { _, seleccionYear, seleccionMes, seleccionDia ->
-                        //Convertir la fecha a long
 
                         val cal = Calendar.getInstance()
                         cal.set(seleccionYear, seleccionMes, seleccionDia)
@@ -125,7 +123,6 @@ fun screen_c(navController: NavController, viewModel: mainViewModel){
                     modifier = Modifier.fillMaxWidth()
                 )
 
-                //Text(text = "Fecha: ${DateFormat.getDateInstance().format(Date(it))}")
             }
 
             Button(
@@ -133,7 +130,7 @@ fun screen_c(navController: NavController, viewModel: mainViewModel){
                     if(nombre.isBlank() || apellido.isBlank() || seleccionFecha.value == null){
                         Toast.makeText(context, "Completar todos los campos", Toast.LENGTH_SHORT).show()
                     }else{
-                        val fecha: Long = seleccionFecha.value!! //para desreferenciar
+                        val fecha: Long = seleccionFecha.value!!
                         viewModel.agregarMiembro(nombre, apellido, fecha)
                         nombre = ""
                         apellido = ""
@@ -199,8 +196,8 @@ fun screen_c(navController: NavController, viewModel: mainViewModel){
 
                         Button(
                             onClick = {
-                                miembroActualizar = miembro // guardar la info
-                                mostrarVentana = true // el estado de la ventana,
+                                miembroActualizar = miembro
+                                mostrarVentana = true
                             }
 
                         ) {
@@ -250,7 +247,6 @@ fun screen_c(navController: NavController, viewModel: mainViewModel){
                             Button(
                                 onClick = {
                                     DatePickerDialog(context, { _, seleccionYear, seleccionMes, seleccionDia ->
-                                        //Convertir la fecha a long
 
                                         val cal = Calendar.getInstance()
                                         cal.set(seleccionYear, seleccionMes, seleccionDia)
@@ -281,7 +277,6 @@ fun screen_c(navController: NavController, viewModel: mainViewModel){
                                         modifier = Modifier.fillMaxWidth()
                                     )
 
-                                    //Text(text = "Fecha: ${DateFormat.getDateInstance().format(Date(it))}")
                                 }
                             }
 
@@ -302,7 +297,7 @@ fun screen_c(navController: NavController, viewModel: mainViewModel){
 
                                     }else{
 
-                                        val fecha: Long = seleccionFechaAct.value!! //para desreferenciar
+                                        val fecha: Long = seleccionFechaAct.value!!
                                         viewModel.actualizarMiembros(miembrosId.toInt(), nombreAct, apellidoAct, fecha)
                                         mostrarVentana = false
                                         seleccionFechaAct.value = null
@@ -371,12 +366,6 @@ fun screen_c(navController: NavController, viewModel: mainViewModel){
                     text = "Autores"
                 )
             }
-
-
-
         }
-
-
     }
-
 }

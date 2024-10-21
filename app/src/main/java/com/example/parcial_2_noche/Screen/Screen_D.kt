@@ -67,12 +67,12 @@ fun screen_d(navController: NavController, viewModel: mainViewModel){
     val year = calendar.get(Calendar.YEAR)
     val mes = calendar.get(Calendar.MONTH)
     val dia = calendar.get(Calendar.DAY_OF_MONTH)
-    //Estado para manejar la fecha seleccionada
+
     val seleccionPrestamo = remember { mutableStateOf<Long?>(null)}
     val seleccionDevolucion = remember { mutableStateOf<Long?>(null)}
     val seleccionDevAct = remember { mutableStateOf<Long?>(null)}
 
-    var prestamoActualizar by remember { mutableStateOf<prestamosDetalles?>(null) } //Puede ser nulo o autor
+    var prestamoActualizar by remember { mutableStateOf<prestamosDetalles?>(null) }
     var mostrarVentana by remember { mutableStateOf(false) }
 
     LaunchedEffect(Unit) {
@@ -177,7 +177,6 @@ fun screen_d(navController: NavController, viewModel: mainViewModel){
             Button(
                 onClick = {
                     DatePickerDialog(context, { _, seleccionYear, seleccionMes, seleccionDia ->
-                        //Convertir la fecha a long
 
                         val cal = Calendar.getInstance()
                         cal.set(seleccionYear, seleccionMes, seleccionDia)
@@ -199,7 +198,6 @@ fun screen_d(navController: NavController, viewModel: mainViewModel){
                     modifier = Modifier.fillMaxWidth()
                 )
 
-                //Text(text = "Fecha: ${DateFormat.getDateInstance().format(Date(it))}")
             }
 
             Spacer(modifier = Modifier.height(8.dp))
@@ -207,7 +205,6 @@ fun screen_d(navController: NavController, viewModel: mainViewModel){
             Button(
                 onClick = {
                     DatePickerDialog(context, { _, seleccionYear, seleccionMes, seleccionDia ->
-                        //Convertir la fecha a long
 
                         val cal = Calendar.getInstance()
                         cal.set(seleccionYear, seleccionMes, seleccionDia)
@@ -229,7 +226,6 @@ fun screen_d(navController: NavController, viewModel: mainViewModel){
                     modifier = Modifier.fillMaxWidth()
                 )
 
-                //Text(text = "Fecha: ${DateFormat.getDateInstance().format(Date(it))}")
             }
 
             Button(
@@ -315,8 +311,8 @@ fun screen_d(navController: NavController, viewModel: mainViewModel){
 
                         Button(
                             onClick = {
-                                prestamoActualizar = prestamos // guardar la info
-                                mostrarVentana = true // el estado de la ventana,
+                                prestamoActualizar = prestamos
+                                mostrarVentana = true
                             }
 
                         ) {
@@ -430,8 +426,6 @@ fun screen_d(navController: NavController, viewModel: mainViewModel){
 
                             Spacer(modifier = Modifier.height(8.dp))
 
-                            // ACTUALIZAR SOLO LA FECHA DE DEVOLUCION.
-
                             TextField(
                                 value = fechaPresAct,
                                 onValueChange = {},
@@ -445,7 +439,6 @@ fun screen_d(navController: NavController, viewModel: mainViewModel){
                             Button(
                                 onClick = {
                                     DatePickerDialog(context, { _, seleccionYear, seleccionMes, seleccionDia ->
-                                        //Convertir la fecha a long
 
                                         val cal = Calendar.getInstance()
                                         cal.set(seleccionYear, seleccionMes, seleccionDia)
@@ -476,7 +469,6 @@ fun screen_d(navController: NavController, viewModel: mainViewModel){
                                         modifier = Modifier.fillMaxWidth()
                                     )
 
-                                    //Text(text = "Fecha: ${DateFormat.getDateInstance().format(Date(it))}")
                                 }
                             }
 
@@ -486,7 +478,7 @@ fun screen_d(navController: NavController, viewModel: mainViewModel){
                         Button(
                             onClick = {
 
-                                if(selectorId3.isEmpty()){ // para evitar que quede pegado ademas por si no actualiza saber que opcion hizo.
+                                if(selectorId3.isEmpty()){
 
                                     selectorId3 = viewModel.listaLibros.find {it.titulo == libroAct }?.libro_id.toString()
 
@@ -508,7 +500,7 @@ fun screen_d(navController: NavController, viewModel: mainViewModel){
 
                                 }else{
 
-                                    val fecha: Long = seleccionDevAct.value!! //para desreferenciar
+                                    val fecha: Long = seleccionDevAct.value!!
                                     viewModel.actualizarPrestamo(prestamoId.toInt(),selectorId3.toInt(), selectorId4.toInt(), prestamoActualizar!!.fecha_prestamo, fecha)
                                     mostrarVentana = false
                                     seleccionDevAct.value = null
@@ -581,12 +573,6 @@ fun screen_d(navController: NavController, viewModel: mainViewModel){
                     text = "Miembros"
                 )
             }
-
-
-
         }
-
     }
-
-
 }

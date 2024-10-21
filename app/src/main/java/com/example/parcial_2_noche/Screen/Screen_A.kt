@@ -39,7 +39,7 @@ fun screen_A(navController: NavController, viewModel: mainViewModel) {
     var nombre by remember { mutableStateOf("") }
     var apellido by remember { mutableStateOf("") }
     var nacionalidad by remember { mutableStateOf("") }
-    var autorActualizar by remember { mutableStateOf<autores?>(null)} //Puede ser nulo o autor
+    var autorActualizar by remember { mutableStateOf<autores?>(null)}
     var mostrarVentana by remember { mutableStateOf(false) }
     val context = LocalContext.current
 
@@ -161,8 +161,8 @@ fun screen_A(navController: NavController, viewModel: mainViewModel) {
 
                         Button(
                             onClick = {
-                                autorActualizar = autor // guardar la info
-                                mostrarVentana = true // el estado de la ventana,
+                                autorActualizar = autor
+                                mostrarVentana = true
                             }
 
                         ) {
@@ -291,10 +291,6 @@ fun screen_A(navController: NavController, viewModel: mainViewModel) {
                     text = "Miembros"
                 )
             }
-
-
-
-
 
         }
     }

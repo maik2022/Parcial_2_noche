@@ -23,7 +23,4 @@ interface autoresDAO {
     @Query("UPDATE autores SET nombre = :nombre, apellido = :apellido, nacionalidad = :nacionalidad WHERE autor_id = :autorId")
     suspend fun actualizarAutor(autorId: Int, nombre: String, apellido: String, nacionalidad:String)
 
-    /*
-    @Query("SELECT autor_id, nombre FROM autores")
-    suspend fun obtenerAutores():List<autores>*/
 }

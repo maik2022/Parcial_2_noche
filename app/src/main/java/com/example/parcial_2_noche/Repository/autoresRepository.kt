@@ -21,10 +21,4 @@ class autoresRepository(private var autoresDao: autoresDAO) {
         autoresDao.actualizarAutor(autorId, nombre, apellido, nacionalidad)
     }
 
-    /*
-    suspend fun obtenerAutores(): List<autores>{
-        return autoresDao.obtenerAutores()
-    }*/
-
-
 }
